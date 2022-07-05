@@ -9,12 +9,12 @@ class Solution:
         max_length =0
         Rearray = []
         while len(nums)> 0:
-            min_N = min(nums)
+            min_N = min(nums) #O(n)
             
             while len(nums)>0:
                 Rearray.append(min_N)
                 nums.remove(min_N)
-                if min_N + 1 in nums:
+                if min_N + 1 in nums: #O(n)
                     min_N = min_N + 1
                 else:
                     max_length = max(max_length, len(Rearray))

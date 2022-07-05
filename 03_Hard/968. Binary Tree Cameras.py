@@ -1,5 +1,6 @@
 from platform import node
 from typing import List
+from unittest import result
 
 # Definition for a binary tree node.
 class TreeNode(object):
@@ -90,12 +91,28 @@ class Solution3:
                 return 'covered'
         # if dfs(root) == 'to_be covered':
             # self.res += 1
-        print((dfs(root)=='to_be_covered') , self.res)
-        return (dfs(root)=='to_be_covered') + self.res
+        return (dfs(ansTN)=='to_be_covered') + self.res
         # return self.res
 
+class Solution4:
+    def minCameraCover(self, root: TreeNode) -> int:
+        self.result = 0
+        def dfs(node):
+            if node is None:
+                return 'covered'
+            l, r = dfs(node.left), dfs(node.right)
+            if l==r=='covered':
+                return 'to_be_covered'
+            if l=='to_be_covered' or r=='to_be_covered':
+                self.result += 1
+                return 'covering'
+            if l=='covering' or r=='covering':
+                return 'covered'
+        print(self.result)
+        return (dfs(ansTN)== 'to_be_covered') + self.result
+
 if __name__ == '__main__':
-    sol = Solution3()
+    sol = Solution4()
     root = [0,0,None,0,None,0,None,None,0]
     ansTN = arr2TreeNode(root)
     print(sol.minCameraCover(ansTN))

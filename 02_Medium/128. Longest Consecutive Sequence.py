@@ -9,7 +9,7 @@ class Solution:
         max_length =0
         Rearray = []
         while len(nums)> 0:
-            min_N = min(nums) #O(n)
+            min_N = min(nums) #O(n).....or O(n^2)here cause it's a while loop?
             
             while len(nums)>0:
                 Rearray.append(min_N)

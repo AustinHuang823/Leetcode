@@ -9,20 +9,19 @@ class ListNode:
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         if not list1 and not list2:
-            # both l1 and l2 are empty list
+            # both list1 and list2 are empty list
             return None
         
         elif not list1:
-            # l1 is empty, directly return l2
+            # list1 is empty, return list2
             return list2
         
         elif not list2:
-            # l2 is empty, directly return l1
+            # list2 is empty, return list1
             return list1
         
         
-        ## General cases
-        # Compare node value and merge
+        # General cases, compare node value and merge
         
         if list1.val < list2.val:
             list1.next = self.mergeTwoLists(list1.next, list2)

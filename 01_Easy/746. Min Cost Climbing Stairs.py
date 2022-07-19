@@ -3,7 +3,7 @@ import timeit
 
 start = timeit.default_timer()
 
-class Solution2:
+class Solution2: # Passed Solution
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         n = len(cost)
         dp = {}
@@ -22,7 +22,7 @@ class Solution2:
         
         return min(dfs(0), dfs(1))
 
-class Solution:
+class Solution: # My time limit exceeded solution
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         def dfs(i):
             if i < len(cost):

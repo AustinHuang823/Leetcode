@@ -11,7 +11,7 @@ class Solution2: # Passed Solution
         def dfs(i):
             if i >= n:
                 return 0
-            if i in dp:
+            if i in dp: #return the value which is in memoization, turnning out the time complexity would be smaller than Solution
                 return dp[i]
             
             dp[i] = min(dfs(i+1) + cost[i], dfs(i+2) + cost[i])
@@ -25,7 +25,7 @@ class Solution2: # Passed Solution
 class Solution: # My time limit exceeded solution
     def minCostClimbingStairs(self, cost: List[int]) -> int:
         def dfs(i):
-            if i < len(cost):
+            if i < len(cost): #computing the result again. so the time complexity will be bigger than Solution2
                 return min(dfs(i+1) + cost[i], dfs(i+2) + cost[i])
             if i >= len(cost):
                 return 0

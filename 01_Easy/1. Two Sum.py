@@ -2,12 +2,14 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        
-        #for l in range(len(nums)):
-        #    for r in range(len(nums)):# and l<r:
-        #        if nums[l] + nums[r] == target and l!=r:
-        #            return l,r
-        # print(target//2)
+        for i in range(len(nums)):
+            Diff = target - nums[i]
+            if Diff in nums and nums.index(Diff) != i:
+                return [nums.index(Diff), i]
+
+
+class Solution2:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         PrevMap = {}
 
         for i,n in enumerate(nums):
@@ -15,12 +17,11 @@ class Solution:
             if Diff in PrevMap:
                 return [PrevMap[Diff],i]
             PrevMap[n]=i
-        # #return
 
         
                 
 if __name__ == '__main__':
-    sol = Solution()
-    nums = [2,7,11,15]
+    sol = Solution2()
+    nums = [11,15,2,7]
     target = 9
     print(sol.twoSum(nums,target))

@@ -1,0 +1,215 @@
+g++ -std=c++11 test.cpp -o main
+./main
+
+1.  unordermap<int, int> map;
+    map.count(n); returns number of elements in map
+
+    instead, set.count returns only 1 or 0
+
+2.  && and, || or, -> ., 
+
+3.  #include <cmath>, -INFINITY or INFINITY (double), LONG_MAX or LONG_MIN (long)
+    #include <climits> int min_val = INT_MIN; int max_val = INT_MAX;
+    long is at least -9223372036854775807 to 9223372036854775807.
+    int is at least -2147483648 to 2147483647
+
+    int: Typically 4 bytes (32 bits).
+    long: Typically 4 bytes (32 bits) on a 32-bit system, and 8 bytes (64 bits) on a 64-bit system.
+    long long: Typically 8 bytes (64 bits). // guarantee 64 bits on any platform
+    *** On most modern platforms, long and long long have the same size and range when both are 64 bits
+        under some older Unix-based systems, long is 8 bytes long long might be 16 bytes, for example: 
+        some versions of Solaris prior to Solaris 11
+
+4.  long is a 32-bit integer that can store values between -2,147,483,648 and 2,147,483,647,
+    while long long is a 64-bit integer that can store values between -9,223,372,036,854,775,808 and 9,223,372,036,854,775,807.
+    LONG_LONG_MAX, LONG_LONG_MIN
+
+5.  nullptr more robust than NULL, nullptr is null pointer that could be convert to any datatype,
+    and NULL is defined as a null pointer constant with a value of 0
+
+6.  std::queue<int> q; q.pop pop the left
+    std::stack<int> s; s.pop pop the right
+
+    stack and queue use push()
+    vector use push_back()
+    queue.front(), queue.back()
+    stack.top()
+
+7.  arr and vector support accessing element using [idx]
+    queue only support .back(), and .front()
+    stack only support .top()
+    std::deque: push_back(), push_front(), pop_back(), pop_front(), back(), front(), [idx]
+    **pop() doesn't return stuff
+
+8.  single string: char '', string "": an array of char
+
+9.  clear(): make the stuff empty, empty(): return true if empty
+
+9. for str, arr, lst, vec, sort with "sort(X.begin(),X.end());"
+
+10. slicing: (could all be sliced by begin(), end())
+
+        std::string str = "hello world";
+        std::string sliced_str = str.substr(6, 5); // sliced_str = "world"
+
+        int arr[] = {1, 2, 3, 4, 5};
+        std::valarray<int> sliced_arr = std::valarray<int>(arr + 1, 3); // sliced_arr = {2, 3, 4}
+
+        std::vector<int> vec = {1, 2, 3, 4, 5};
+        std::vector<int> sliced_vec(vec.begin() + 1, vec.begin() + 4); // sliced_vec = {2, 3, 4}
+
+        std::list<int> lst = {1, 2, 3, 4, 5};
+        std::list<int> sliced_lst(lst.begin(), lst.end());
+        sliced_lst.erase(std::next(sliced_lst.begin()), std::prev(sliced_lst.end())); // sliced_lst = {2, 3, 4}
+
+        std::list<int> lst = {1, 2, 3, 4, 5};
+        std::list<int> sliced_lst(lst.begin(), lst.end());
+        sliced_list.erase(sliced_list.begin()+2); // sliced_list = {1,2,4,5}
+
+11. priority_queue<int, vector<int>, greater<int>> pq; smallest at top
+    std::priority_queue<int, std::vector<int>, std::less<int>> pq; biggest at top
+    pq.pop(); pq.push(); pq.top();
+
+12. std:: standard library functions. using namespace std;
+
+13. to_string();  
+    stoi(); string to integer
+
+14. hash table: unordermap<int, int> map;
+    dictionary: map<int, int> map; sorted by key
+
+15. *max_element(X.begin(), X.end()), *min_element()
+    max(), min()
+
+16. cin >> x; input as x
+
+17. [] lambda function:
+    auto cmp = [](const pair<int, int>& p1, const pair<int, int>& p2) {
+            return p1.second > p2.second;
+        };
+
+18. typeid(X).name()
+
+19. lambda example(& iterate through map by **pair**): 347. Top K Frequent Elements.cpp
+    class Solution {
+    public:
+        vector<int> topKFrequent(vector<int>& nums, int k) {
+            unordered_map<int, int> counter;
+            for (auto& n: nums){
+                counter[n]++;
+            }
+            auto cmp = [](pair<int, int>& a, pair<int, int>& b){
+                return a.second > b.second;
+            };
+            priority_queue<pair<int, int>, vector<pair<int, int>>, decltype(cmp)> pq(cmp);
+            for (auto& n: counter){
+                pq.push(n);
+                if (pq.size()>k){
+                    pq.pop();
+                } 
+            }
+            vector<int> res;
+            while (!pq.empty()){
+                res.push_back(pq.top().first);
+                pq.pop();
+            }
+            return res;
+        }
+    };
+
+20. sum: accumulate(nums.begin(), nums.end(), 0)
+
+21. set.insert()
+
+    auto it = myset.find(element);
+    myset.erase(it);
+
+22. label example:
+
+    // C program to print numbers
+    // from 1 to 10 using goto
+    // statement
+    #include <stdio.h>
+    
+    // function to print numbers from 1 to 10
+    void printNumbers()
+    {
+        int n = 1;
+    label:
+        printf("%d ", n);
+        n++;
+        if (n <= 10)
+            goto label;
+    }
+    
+    // Driver program to test above function
+    int main()
+    {
+        printNumbers();
+        return 0;
+    }
+
+    // printout: 1 2 3 4 5 6 7 8 9 10
+
+23. switch example:
+    // C++ program to demonstrate syntax of switch
+    #include <iostream>
+    using namespace std;
+    
+    // Driver Code
+    int main()
+    {
+        // switch variable
+        char x = 'A';
+    
+        // switch statements
+        switch (x) {
+        case 'A':
+            cout << "Choise is A";
+            break;
+        case 'B':
+            cout << "Choise is B";
+            break;
+        case 'C':
+            cout << "Choise is C";
+            break;
+        default:
+            cout << "Choice other than A, B and C";
+            break;
+        }
+        return 0;
+    }
+    // printout: Choise is A
+
+24. string, vector, list, set, map all support find:
+    same as py: if x not in X
+    map example: if (X.find(x) == X.end())
+    vector example: if (find(X.begin(), X.end(), x) == X.end())
+
+25. sort(X.begin(), X.end()); in ascending order;
+    sort(X.begin(), X.end(), greater<int>()); in descending order, (same as lambda, here it's push_back);
+    reverse(X.begin(), X.end());
+    accumulate(first_iterator, last_iterator, initial value of sum)
+
+26. cmp sort example:
+    bool cmp(vector<int>& a, vector<int>& b) {return a[1] < b[1];}
+    class Solution {
+    // private: 
+        // bool cmp(vector<int>& a, vector<int>& b, cmp) {
+        //     return a[1] < b[1];
+        // }
+    public:
+        int findMinArrowShots(vector<vector<int>>& points) {
+            if (points.size() == 0) return 0;
+
+            sort(points.begin(), points.end(), cmp);
+            int arrowPos = 0, arrowCnt = 0;
+            for (auto b: points){
+                if (arrowPos < b[0] || arrowCnt == 0){
+                    arrowPos = b[1];
+                    arrowCnt++;
+                }
+            }
+            return arrowCnt;
+        }
+    };

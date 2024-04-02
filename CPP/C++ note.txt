@@ -213,3 +213,7 @@ g++ -std=c++11 test.cpp -o main
             return arrowCnt;
         }
     };
+
+27. time complexity of set, map vs unordered_set, unordered_map
+    for set and map: if (set.find(x) == set.find(x)) takes O(log(n))
+    for unordered_set & unordered_map: if (unordered_map.find(x) == unordered_map.end()) takes O(1)
